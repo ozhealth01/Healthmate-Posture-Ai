@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a demo | Healthmate Posture AI</title>
+<meta name="description" content="Book a demonstration of Healthmate Posture AI or request a consultation with TRIMAX Healthcare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="demo" data-cta="off">
+<main id="main">
+  <section class="page-hero" style="padding-bottom:88px">
+    <div class="wrap split">
+      <div>
+        <p class="label">Book a demo</p>
+        <h1>See an assessment from capture to report.</h1>
+        <p class="lede">Tell us a little about your setting and the TRIMAX team will arrange a demonstration or a consultation.</p>
+        <div class="cards" style="grid-template-columns:1fr;margin-top:32px;max-width:30em">
+          <div class="card">
+            <h3>Want to look around first?</h3>
+            <p>The demo app lets you click through the clinician, patient, retail and admin views using sample data.</p>
+            <a href="login.html">Open the demo app →</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form class="form" data-demo-form>
+          <div class="row">
+            <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="org">Organisation</label><input id="org" name="org" type="text" autocomplete="organization" required></div>
+          </div>
+          <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field">
+            <label for="setting">Your setting</label>
+            <select id="setting" name="setting">
+              <option>Physiotherapy or rehabilitation clinic</option>
+              <option>Chiropractic or osteopathy practice</option>
+              <option>Hospital or medical centre</option>
+              <option>Pharmacy or orthotic retailer</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="msg">What would you like to see?</label><textarea id="msg" name="msg"></textarea></div>
+          <div><button class="btn btn-primary" type="submit">Request a demo</button></div>
+        </form>
+        <div class="notice warn form-result" tabindex="-1" role="status">
+          <strong>This form is not connected yet.</strong> Your request was not sent and nothing you typed has been stored. Once the site is live, this is where a confirmation will appear.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="assets/site.js"></script>
+</body>
+</html>
