@@ -1,0 +1,175 @@
+/* Healthmate demo app. Builds on the tokens in styles.css. */
+
+body.app { background: var(--workspace); }
+.app h1 { font-size: 1.6rem; letter-spacing: -0.02em; }
+.app h2 { font-size: 1.15rem; letter-spacing: -0.01em; }
+.app h3 { font-size: 1rem; }
+
+.demo-bar {
+  background: #FFFBEB; border-bottom: 1px solid #FDE68A; color: #78350F;
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.03em;
+  padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.demo-bar button { background: none; border: 0; color: #78350F; font: inherit; text-decoration: underline; cursor: pointer; padding: 4px; }
+
+.shell { display: grid; grid-template-columns: 248px 1fr; min-height: calc(100vh - 37px); }
+.side {
+  background: var(--surface); border-right: 1px solid var(--border);
+  padding: 20px 16px; display: flex; flex-direction: column; gap: 24px;
+}
+.side .wordmark { padding: 0 8px; }
+.side ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.side nav a {
+  display: block; padding: 10px 12px; border-radius: 8px;
+  color: var(--text); text-decoration: none; font-size: 0.95rem;
+}
+.side nav a:hover { background: var(--workspace); }
+.side nav a[aria-current="page"] { background: var(--navy); color: #fff; }
+.who { margin-top: auto; border-top: 1px solid var(--border); padding: 16px 8px 0; font-size: 0.88rem; }
+.who strong { display: block; color: var(--navy); }
+.who span { display: block; color: var(--muted); }
+.who button { margin-top: 12px; }
+
+.main { padding: 32px 40px 64px; max-width: 1180px; width: 100%; }
+.main:focus { outline: none; }
+.page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+.page-head p { color: var(--muted); margin-top: 6px; max-width: 44em; }
+.crumb { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.crumb a { color: var(--cyan-text); text-decoration: none; }
+
+.btn-sm { min-height: 36px; padding: 0 14px; font-size: 0.88rem; }
+.btn-danger { background: var(--surface); color: var(--error); border-color: var(--border); }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* Status tags on light surfaces */
+.tag-approved { background: #F0FDF4; color: var(--success); border: 1px solid #BBF7D0; }
+.tag-review { background: #FFFBEB; color: var(--warning); border: 1px solid #FDE68A; }
+.tag-neutral { background: var(--workspace); color: var(--muted); border: 1px solid var(--border); }
+.tag-ok { background: rgba(34, 197, 94, 0.14); color: #86EFAC; border: 1px solid rgba(34, 197, 94, 0.35); }
+
+.box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.box + .box { margin-top: 20px; }
+.box > h2 { margin-bottom: 14px; }
+.grid { display: grid; gap: 20px; }
+.grid.c2 { grid-template-columns: repeat(2, 1fr); }
+.grid.c3 { grid-template-columns: repeat(3, 1fr); }
+.grid.c4 { grid-template-columns: repeat(4, 1fr); }
+.stack { display: grid; gap: 20px; }
+
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.tile .n { font-family: var(--mono); font-size: 1.9rem; color: var(--navy); line-height: 1.1; }
+.tile .k { font-size: 0.88rem; color: var(--muted); margin-top: 6px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+th { text-align: left; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+td a { font-weight: 500; text-decoration: none; }
+td a:hover { text-decoration: underline; }
+.table-wrap { overflow-x: auto; }
+.empty { color: var(--muted); padding: 12px 0; }
+.mono { font-family: var(--mono); font-size: 0.82rem; }
+.muted { color: var(--muted); }
+.small { font-size: 0.88rem; }
+
+/* Wizard */
+.wiz-steps { display: flex; gap: 8px; list-style: none; padding: 0; margin: 0 0 24px; flex-wrap: wrap; }
+.wiz-steps li { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); background: var(--surface); }
+.wiz-steps li.on { background: var(--navy); border-color: var(--navy); color: #fff; }
+.wiz-steps li.done { color: var(--success); border-color: #BBF7D0; }
+.choice { display: grid; gap: 10px; }
+.choice label {
+  display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--surface); cursor: pointer;
+}
+.choice label:has(input:checked) { border-color: var(--cyan-text); box-shadow: 0 0 0 1px var(--cyan-text); }
+.choice label.off { opacity: 0.55; cursor: not-allowed; }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--navy); flex: none; }
+.choice strong { display: block; color: var(--navy); font-weight: 500; }
+.choice span span { font-size: 0.88rem; color: var(--muted); }
+.check { display: flex; gap: 12px; align-items: flex-start; margin-top: 18px; }
+.check input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--navy); flex: none; }
+.err { color: var(--error); font-size: 0.9rem; margin-top: 12px; min-height: 1.4em; }
+.qc { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.qc li { display: flex; gap: 10px; align-items: center; }
+.qc li::before { content: "✓"; color: var(--success); font-weight: 600; }
+
+/* Assessment review: dark = AI analysis, light = clinician record */
+.assess { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
+.assess .panel { position: sticky; top: 20px; }
+.assess .figure svg { margin: 0 auto; max-height: 380px; }
+.views { display: flex; gap: 6px; margin-bottom: 12px; }
+.views button {
+  flex: 1; min-height: 36px; border-radius: 8px; border: 1px solid rgba(226, 232, 240, 0.2);
+  background: transparent; color: var(--on-navy-muted); font: 500 0.8rem var(--sans); cursor: pointer;
+}
+.views button[aria-pressed="true"] { background: var(--navy-soft); color: #fff; border-color: var(--cyan); }
+.ob { border: 1px solid var(--border); border-radius: 10px; padding: 16px; background: var(--surface); }
+.ob + .ob { margin-top: 12px; }
+.ob-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 8px; flex-wrap: wrap; }
+.ob-head strong { color: var(--navy); }
+.ob-head span { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.03em; }
+.ob textarea, .notes {
+  width: 100%; min-height: 64px; padding: 10px 12px; resize: vertical;
+  border: 1px solid #CBD5E1; border-radius: 8px; font: 400 0.95rem var(--sans); color: var(--text); background: var(--surface);
+}
+.ob textarea:focus, .notes:focus, .inp:focus { outline: 3px solid var(--cyan); outline-offset: 1px; }
+.ob .rm { background: none; border: 0; color: var(--muted); font: inherit; font-size: 0.85rem; text-decoration: underline; cursor: pointer; margin-top: 6px; padding: 4px 0; }
+.limits { margin: 0; padding-left: 18px; font-size: 0.93rem; }
+.limits li { margin-bottom: 6px; }
+.inp { min-height: 44px; padding: 8px 12px; border: 1px solid #CBD5E1; border-radius: 10px; font: 400 1rem var(--sans); color: var(--text); background: var(--surface); }
+select.inp { min-width: 220px; }
+
+/* Products are visually set apart from clinical content */
+.commercial { border: 1px dashed #CBD5E1; background: var(--workspace); }
+.commercial .label { color: var(--muted); }
+
+/* Report sheet */
+.sheet { background: #fff; border: 1px solid var(--border); border-radius: 4px; max-width: 800px; padding: 48px 56px; box-shadow: 0 12px 32px -20px rgba(17, 28, 48, 0.3); }
+.sheet-head { display: flex; justify-content: space-between; gap: 20px; border-bottom: 2px solid var(--navy); padding-bottom: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+.sheet-head .clinic { font-size: 1.3rem; font-weight: 600; color: var(--navy); }
+.sheet h2 { margin: 28px 0 10px; font-size: 1.05rem; }
+.sheet dl { display: grid; grid-template-columns: 160px 1fr; gap: 6px 16px; margin: 0; font-size: 0.95rem; }
+.sheet dt { color: var(--muted); }
+.sheet dd { margin: 0; }
+.sheet .find { padding: 12px 0; border-top: 1px solid var(--border); }
+.sheet .find strong { color: var(--navy); display: block; }
+.sheet .foot { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); }
+
+/* Plain, generous treatment for patient and retail results */
+.plain { font-size: 1.125rem; line-height: 1.7; }
+.plain .box { padding: 28px; }
+.plain h2 { font-size: 1.3rem; }
+.big-start { padding: 48px 32px; text-align: center; }
+.big-start .btn { min-height: 56px; padding: 0 32px; font-size: 1.05rem; margin-top: 20px; }
+
+.bar-row { display: grid; grid-template-columns: 140px 1fr 40px; gap: 12px; align-items: center; font-size: 0.9rem; margin-bottom: 10px; }
+.bar { height: 10px; background: var(--workspace); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+.bar i { display: block; height: 100%; background: var(--navy); }
+
+@media (max-width: 1000px) {
+  .assess { grid-template-columns: 1fr; }
+  .assess .panel { position: static; }
+  .grid.c4 { grid-template-columns: repeat(2, 1fr); }
+  .grid.c3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .shell { grid-template-columns: 1fr; }
+  .side { border-right: 0; border-bottom: 1px solid var(--border); padding: 12px 16px; gap: 12px; }
+  .side ul { display: flex; overflow-x: auto; gap: 4px; padding-bottom: 4px; }
+  .side nav a { white-space: nowrap; }
+  .who { margin-top: 0; border-top: 0; padding: 0 8px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .who button { margin-top: 0; }
+  .main { padding: 24px 16px 48px; }
+  .grid.c2, .grid.c4 { grid-template-columns: 1fr; }
+  .sheet { padding: 28px 20px; }
+  .sheet dl { grid-template-columns: 1fr; }
+}
+@media print {
+  .demo-bar, .side, .no-print { display: none !important; }
+  .shell { display: block; }
+  .main { padding: 0; max-width: none; }
+  .sheet { border: 0; box-shadow: none; padding: 0; max-width: none; }
+  body.app { background: #fff; }
+}
